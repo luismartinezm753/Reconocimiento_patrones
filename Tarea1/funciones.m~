@@ -1,0 +1,13 @@
+%recibe el path del directoria y el tipo de imagen y retorna una
+%matriz con todas las imagenes de ese directorio
+function images = loadImg(Folder,ImgType)
+   imgDir=dir([Folder '/' ImgType]);
+   nfile=max(size(imgDir));
+   for i=1:nfile
+    images(i).img = imread([Folder imgDir(i).name]);
+   end
+end
+%recibe una matriz, un vector para las filas y otro para las columnas
+function vector=splitMatrix(matrix,rows,cols)
+    vector=mat2cell(matrix,rows,cols);
+end
