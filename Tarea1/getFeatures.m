@@ -1,17 +1,17 @@
 function [trece, cuatro, ocho, number] = getFeatures(g)
-    %si alguno de los archivos no existe, carga las imagenes porque tendrá
-    %que calcular alguna matriz de características.
+    %si alguno de los archivos no existe, carga las imagenes porque tendrï¿½
+    %que calcular alguna matriz de caracterï¿½sticas.
     if(exist('features13.mat', 'file')~=2 || exist('features4.mat', 'file')~=2 || exist('features13.mat', 'file')==2)
         [train, number] = loadImg('digitos\train\digit_0\', 'png');
     end
-    %Si existe un archivo con la matriz de características la carga, sino,
+    %Si existe un archivo con la matriz de caracterï¿½sticas la carga, sino,
     %la crea y la guarda.
     if(exist('features13.mat', 'file')==2)
         trece = load('features13.mat').trece;
     else
         trece = zeros(numel(train), 13);
         for i = 1:numel(train)
-            trece(i,:) = bins13(train(i).img, g, g);
+            trece(i,:) = bins13(train(i).img, g);%deberia solo pasarse un g, xq son el mismo valor para filas y cols
         end
         save('features13.mat', 'trece');
     end
