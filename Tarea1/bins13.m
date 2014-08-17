@@ -1,11 +1,6 @@
 %recibe una imagen y retorna su histograma de ocurrencias total 
 function total=bins13(img, g)
-    if g==2
-        div=[64 64];
-    else
-        div=[32 32 32 32];
-    end
-    subMatrix=splitMatrix(img,div,div);
+    subMatrix=splitMatrix(img,g,g);
     n=size(subMatrix);
     total=[];
     for  k=1:n(1)
