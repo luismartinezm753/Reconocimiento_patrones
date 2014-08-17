@@ -7,7 +7,8 @@ function [trece, cuatro, ocho, number] = getFeatures(g)
     %Si existe un archivo con la matriz de caracter�sticas la carga, sino,
     %la crea y la guarda.
     if(exist('features13.mat', 'file')==2)
-        trece = load('features13.mat').trece;
+        trece = load('features13.mat');
+        trece = trece.trece;
     else
         trece = zeros(numel(train), 13*g*g);
         for i = 1:numel(train)
@@ -17,7 +18,8 @@ function [trece, cuatro, ocho, number] = getFeatures(g)
     end
 
     if(exist('features4.mat', 'file')==2)
-        cuatro = load('features4.mat').cuatro;
+        cuatro = load('features4.mat');
+        cuatro = cuatro.cuatro;
     else
         cuatro = zeros(numel(train), 16*g*g);
         for i = 1:numel(train)
@@ -27,7 +29,8 @@ function [trece, cuatro, ocho, number] = getFeatures(g)
     end
 
     if(exist('features8.mat', 'file')==2)
-        ocho = load('features8.mat').ocho;
+        ocho = load('features8.mat');
+        ocho = ocho.ocho;
     else
         ocho = zeros(numel(train), 16*g*g);
         for i = 1:numel(train)
