@@ -1,8 +1,8 @@
 function [trece, cuatro, ocho, number] = getFeatures(g)
     %si alguno de los archivos no existe, carga las imagenes porque tendr�
     %que calcular alguna matriz de caracter�sticas.
-    if(exist(sprintf('features13_%dx%d.mat', g, g), 'file')~=2 || exist(sprintf('features4_%dx%d.mat', g, g), 'file')~=2 || exist(sprintf('features8_%dx%d.mat', g, g), 'file')==2)
-        [train, number] = loadImg('digitos\train\digit_0\', 'png');
+    if(exist(sprintf('features13_%dx%d.mat', g, g), 'file')~=2 || exist(sprintf('features4_%dx%d.mat', g, g), 'file')~=2 || exist(sprintf('features8_%dx%d.mat', g, g), 'file')~=2)
+        [images, number] = loadImg('digitos\train\digit_0\', 'png');
     end
     %Si existe un archivo con la matriz de caracter�sticas la carga, sino,
     %la crea y la guarda.
@@ -10,9 +10,9 @@ function [trece, cuatro, ocho, number] = getFeatures(g)
         trece = load(sprintf('features13_%dx%d.mat', g, g));
         trece = trece.trece;
     else
-        trece = zeros(numel(train), 13*g*g);
-        for i = 1:numel(train)
-            trece(i,:) = bins13(train(i).img, g);%deberia solo pasarse un g, xq son el mismo valor para filas y cols
+        trece = zeros(numel(images), 13*g*g);
+        for i = 1:numel(images)
+            trece(i,:) = bins13(images(i).img, g);%deberia solo pasarse un g, xq son el mismo valor para filas y cols
         end
         save(sprintf('features13_%dx%d.mat', g, g), 'trece');
     end
@@ -24,9 +24,9 @@ function [trece, cuatro, ocho, number] = getFeatures(g)
         cuatro = load(sprintf('features4_%dx%d.mat', g, g));
         cuatro = cuatro.cuatro;
     else
-        cuatro = zeros(numel(train), 16*g*g);
-        for i = 1:numel(train)
-            cuatro(i,:) = cc4(train(i).img, g, g);
+        cuatro = zeros(numel(images), 16*g*g);
+        for i = 1:numel(images)
+            cuatro(i,:) = cc4(images(i).img, g, g);
         end
         save(sprintf('features4_%dx%d.mat', g, g), 'cuatro');
     end
@@ -38,9 +38,9 @@ function [trece, cuatro, ocho, number] = getFeatures(g)
         ocho = load(sprintf('features8_%dx%d.mat', g, g));
         ocho = ocho.ocho;
     else
-        ocho = zeros(numel(train), 16*g*g);
-        for i = 1:numel(train)
-            ocho(i,:) = cc8(train(i).img, g, g);
+        ocho = zeros(numel(images), 16*g*g);
+        for i = 1:numel(images)
+            ocho(i,:) = cc8(images(i).img, g, g);
         end
         save(sprintf('features8_%dx%d.mat', g, g), 'ocho');
     end

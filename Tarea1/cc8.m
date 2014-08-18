@@ -24,10 +24,10 @@ end
 
 function str = ray(mat, x, y, dir)
     str = 0;
-    if(dir==0) %NorEste
-        for d = 0:min((abs(size(mat,1)-x)+1),(abs(1-y)+1))-1
-            if (mat(x+d,y-d)==0)
-                str = 8;
+    if(dir==0) %NorEste        
+        for d = 0:min((abs(1-x)+1),(abs(size(mat,2)-y)+1))-1
+            if (mat(x-d,y+d)==0)
+                str = 2;
                 break;
             end
         end
@@ -39,9 +39,9 @@ function str = ray(mat, x, y, dir)
             end
         end
     elseif(dir==2) %SurOeste
-        for d = 0:min((abs(1-x)+1),(abs(size(mat,2)-y)+1))-1
-            if (mat(x-d,y+d)==0)
-                str = 2;
+        for d = 0:min((abs(size(mat,1)-x)+1),(abs(1-y)+1))-1
+            if (mat(x+d,y-d)==0)
+                str = 8;
                 break;
             end
         end
