@@ -38,6 +38,6 @@ function [trece, cuatro, ocho, number] = getFeatures(g)
         end
         save('features8.mat', 'ocho');
     end
-    disp('Termino 8-CC');
+    Termin
 end
 

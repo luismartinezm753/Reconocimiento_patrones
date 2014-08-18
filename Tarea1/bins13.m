@@ -129,6 +129,6 @@ function pos=getPos2(countUpLeft,countUpRigth,countDownLeft,countDownRight)
     elseif countDownRight==0
         pos=13;
     else
-        pos=8;
+        pos=9;
     end
 end
