@@ -16,15 +16,12 @@ function [trece, cuatro, ocho, number] = getFeatures(g)
         end
         save(sprintf('features13_%dx%d.mat', g, g), 'trece');
     end
-<<<<<<< HEAD
     disp('Termino 13-bins');
     if(exist('features4.mat', 'file')==2)
         cuatro = load('features4.mat');
-=======
-    
+    end
     if(exist(sprintf('features4_%dx%d.mat', g, g), 'file')==2)
         cuatro = load(sprintf('features4_%dx%d.mat', g, g));
->>>>>>> 3570e187c0c4afcd244f43bfde957475a8cf7ad0
         cuatro = cuatro.cuatro;
     else
         cuatro = zeros(numel(train), 16*g*g);
@@ -33,15 +30,12 @@ function [trece, cuatro, ocho, number] = getFeatures(g)
         end
         save(sprintf('features4_%dx%d.mat', g, g), 'cuatro');
     end
-<<<<<<< HEAD
     disp('Termino 4-CC');
     if(exist('features8.mat', 'file')==2)
         ocho = load('features8.mat');
-=======
-
+    end
     if(exist(sprintf('features8_%dx%d.mat', g, g), 'file')==2)
         ocho = load(sprintf('features8_%dx%d.mat', g, g));
->>>>>>> 3570e187c0c4afcd244f43bfde957475a8cf7ad0
         ocho = ocho.ocho;
     else
         ocho = zeros(numel(train), 16*g*g);
