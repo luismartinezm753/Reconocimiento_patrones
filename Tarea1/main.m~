@@ -18,9 +18,9 @@ for g = [2 4]
                 knnocho = ClassificationKNN.fit(ocho, number, 'NumNeighbors', k, 'Distance', d); %Cambiar a fitcknn si es necesario
             end
             [test, class] = loadImg('digitos\test\digit_0\', 'png');
-            res13Bins = zeros(numel(class));
-            res4cc = zeros(numel(class));
-            res8cc = zeros(numel(class));
+            res13Bins = zeros(numel(class),1);
+            res4cc = zeros(numel(class),1);
+            res8cc = zeros(numel(class),1);
             for i = 1:numel(test)
                 if(predict(knntrece, bins13(test(i).img, g))==class(i)) 
                     res13Bins(i) = 1;
@@ -40,13 +40,15 @@ for g = [2 4]
             end
             for i = 0:1:9
                 num = i*numel(test)/10;
-                fprintf('El porcentaje de acierto del método 13bin para el digito %d, utilizando una grilla de %dx%d y un valor %d para el knn y una medida de distancia %s es:  %d% \n',i, g, g, k, d, sum(res13Bins(num+1:(i+1)*numel(test)/10))/(numel(test)/10))
-                fprintf('El porcentaje de acierto del método 4CC  para el digito %d, utilizando una grilla de %dx%d y un valor %d para el knn y una medida de distancia %s es:  %d% \n',i, g, g, k, d, sum(res4cc(num+1:(i+1)*numel(test)/10))/(numel(test)/10))
-                fprintf('El porcentaje de acierto del método 8CC  para el digito %d, utilizando una grilla de %dx%d y un valor %d para el knn y una medida de distancia %s es:  %d% \n',i, g, g, k, d, sum(res8cc(num+1:(i+1)*numel(test)/10))/(numel(test)/10))
+                fprintf(fid,'El porcentaje de acierto del método 13bin para el digito %d, utilizando una grilla de %dx%d y un valor %d para el knn y una medida de distancia %s es:  %d% \n',i, g, g, k, d, sum(res13Bins(num+1:(i+1)*numel(test)/10))/(numel(test)/10));
+                fprintf(fid,'El porcentaje de acierto del método 4CC  para el digito %d, utilizando una grilla de %dx%d y un valor %d para el knn y una medida de distancia %s es:  %d% \n',i, g, g, k, d, sum(res4cc(num+1:(i+1)*numel(test)/10))/(numel(test)/10));
+                fprintf(fid,'El porcentaje de acierto del método 8CC  para el digito %d, utilizando una grilla de %dx%d y un valor %d para el knn y una medida de distancia %s es:  %d% \n',i, g, g, k, d, sum(res8cc(num+1:(i+1)*numel(test)/10))/(numel(test)/10));
+                fprintf(fid,'--------------------------------------------- \n');
             end
-            fprintf('El porcentaje de acierto total del método 13bin, utilizando una grilla de %dx%d y un valor %d para el knn y una medida de distancia %s es: %d% \n',g, g, k, d, sum(res13Bins)/(numel(res13Bins)))
-            fprintf('El porcentaje de acierto total del método 4CC, utilizando una grilla de %dx%d y un valor %d para el knn y una medida de distancia %s es: %d% \n',g, g, k, d, sum(res4cc)/(numel(res4cc)))
-            fprintf('El porcentaje de acierto total del método 8CC, utilizando una grilla de %dx%d y un valor %d para el knn y una medida de distancia %s es: %d% \n',g, g, k, d, sum(res8cc)/(numel(res8cc)))
+            fprintf(fid,'-------------------------------------------- \n');
+            fprintf(fid,'El porcentaje de acierto total del método 13bin, utilizando una grilla de %dx%d y un valor %d para el knn y una medida de distancia %s es: %d% \n',g, g, k, d, sum(res13Bins)/(numel(res13Bins)));
+            fprintf(fid,'El porcentaje de acierto total del método 4CC, utilizando una grilla de %dx%d y un valor %d para el knn y una medida de distancia %s es: %d% \n',g, g, k, d, sum(res4cc)/(numel(res4cc)));
+            fprintf(fid,'El porcentaje de acierto total del método 8CC, utilizando una grilla de %dx%d y un valor %d para el knn y una medida de distancia %s es: %d% \n',g, g, k, d, sum(res8cc)/(numel(res8cc)));
         end
     end
 end

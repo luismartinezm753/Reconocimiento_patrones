@@ -15,8 +15,11 @@ function hist=getHist(matrix)
     n=size(matrix);
     %hist=cell(3,13);
     hist=zeros(1,13);
-    for i=1:n
-        for j=1:n
+    for i=1:n(1)
+        for j=1:n(1)
+            if matrix(i,j)==0
+                continue;
+            end
             countUp=countBP(matrix,i,j,0,n(1));countDown=countBP(matrix,i,j,1,n(1));
             countLeft=countBP(matrix,i,j,2,n(1));countRight=countBP(matrix,i,j,3,n(1));
             countTotal=countUp+countDown+countLeft+countRight;
