@@ -3,7 +3,9 @@
 for g = [2 4]
     [trece, cuatro, ocho, number] = getFeatures(g);
     for k = [1 5 10 20]
-        for d = ['cityblock' 'euclidian']
+        distances = ['cityblock'; 'euclidian'];
+        for t = [1 2]
+            d = distances(t,:);
             knntrece = ClassificationKNN.fit(trece, number, 'NumNeighbors', k, 'Distance', d); %Cambiar a fitcknn si es necesario
             knncuatro = ClassificationKNN.fit(cuatro, number, 'NumNeighbors', k, 'Distance', d); %Cambiar a fitcknn si es necesario
             knnocho = ClassificationKNN.fit(ocho, number, 'NumNeighbors', k, 'Distance', d); %Cambiar a fitcknn si es necesario
