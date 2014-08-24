@@ -6,19 +6,18 @@ function total=bins13(img, g)
     for  k=1:n(1)
         for j=1:n(2)
            hist=getHist(subMatrix{k,j});
-           total=horzcat(total,hist);
+           total=[total hist];
         end
     end
 end
 %retorna el histograma normalizado para una submatriz en particular
 function hist=getHist(matrix)
     n=size(matrix);
-    %hist=cell(3,13);
     hist=zeros(1,13);
     for i=1:n(1)
         for j=1:n(1)
-            if matrix(i,j)==0
-                continue;
+            if (matrix(i,j)==0)
+                continue
             end
             countUp=countBP(matrix,i,j,0,n(1));countDown=countBP(matrix,i,j,1,n(1));
             countLeft=countBP(matrix,i,j,2,n(1));countRight=countBP(matrix,i,j,3,n(1));
@@ -32,11 +31,13 @@ function hist=getHist(matrix)
                 hist(getPos2(countUpLeft,countUpRigth,countDownLeft,countDownRight))=1+hist(getPos2(countUpLeft,countUpRigth,countDownLeft,countDownRight));
             else
                 %agregar al histograma en la posicion correcta
-                hist(getPos(countUp,countDown,countLeft,countRight))=hist(getPos(countUp,countDown,countLeft,countRight))+1;
+                pos=getPos(countUp,countDown,countLeft,countRight);
+                hist(pos)=hist(pos)+1;
             end
-            hist=hist./sum(hist);
+            countTotal=0;
         end
     end
+    hist=hist./sum(hist);
 end
 %cuenta la cantidad de puntos negros alcanzados, en una direccion
 %0=up 1=down 2=left 3=rigth 4=arriba-izq 5=arriba-der 6=abajo-izq
@@ -46,56 +47,56 @@ function count=countBP(matrix,i,j,dir,n)
     if dir==0
         for k=1:n
             if (i+k<=n && matrix(i+k,j)==0)
-                count=count+1;
+                count=1;
                 return
-            end
+            end  
         end
     elseif dir==1
         for k=1:n
             if (i-k>0 && matrix(i-k,j)==0)
-                count=count+1;
+                count=1;
                 return
             end
         end
     elseif dir==2
         for k=1:n
             if (j+k<=n && matrix(i,j+k)==0)
-                count=count+1;
+                count=1;
                 return
             end
         end
     elseif dir==3
         for k=1:n
             if (j-k>0 && matrix(i,j-k)==0)
-                count=count+1;
+                count=1;
                 return
             end
         end
      elseif dir==4
         for k=1:n
             if ((i+k<=n && j-k>0) && matrix(i+k,j-k)==0)
-                count=count+1;
+                count=1;
                 return
             end
         end
      elseif dir==5
         for k=1:n
             if ((i+k<=n && j+k<=n) && matrix(i+k,j+k)==0)
-                count=count+1;
+                count=1;
                 return
             end
         end
      elseif dir==6
         for k=1:n
             if ((i-k>0 && j-k>0) && matrix(i-k,j-k)==0)
-                count=count+1;
+                count=1;
                 return
             end
         end
      elseif dir==7
         for k=1:n
             if ((i-k>0 && j+k<=n) && matrix(i-k,j+k)==0)
-                count=count+1;
+                count=1;
                 return
             end
         end
@@ -106,7 +107,7 @@ end
 function pos=getPos(countUp,countDown,countLeft,countRigth)
     if(countUp==0 && countRigth==0)
         pos=1;
-    elseif(countUp==0 && countDown==0)
+    elseif(countRigth==0 && countDown==0)
         pos=2;
     elseif(countLeft==0 && countDown==0)
         pos=3;
