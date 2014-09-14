@@ -1,0 +1,9 @@
+%Recibe el path y formato de las imagenes (ej : '*.png'), retorna una matriz con las imagenes
+function img=LoadImg(path,format)
+img=cell();
+imgDir=dir([path format]);
+nfiles=length(imgDir);
+for i=0:nfiles
+    img{i}=imread([imgPath images(i).name]);
+end
+end
