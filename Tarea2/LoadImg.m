@@ -6,5 +6,8 @@ nfiles=length(imgDir);
 img=cell(1,nfiles);
 for i=1:nfiles
     img{i}=imread([path imgDir(i).name]);
+    if(strcmp(format,'*.png')==1)
+        img{i}=im2bw(img{i},0.5);
+    end
 end
 end
