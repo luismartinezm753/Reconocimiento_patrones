@@ -1,5 +1,6 @@
 function [ bin ] = skinImg(img)
-TH = 0.4; %Threshold
+tiempo_inicio = cputime;
+TH = 0.6; %Threshold
 [filas, cols, ~] = size(img);
 bin = zeros(filas, cols);
 for i = 1:filas
@@ -9,5 +10,7 @@ for i = 1:filas
       end
    end
 end
+total = cputime - tiempo_inicio;
+disp(total);
 end
 
