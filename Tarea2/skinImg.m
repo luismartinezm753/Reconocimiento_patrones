@@ -7,7 +7,7 @@ function [ bin ] = skinImg(img)
     weigthn = [0.0637; 0.0516; 0.0864; 0.0636; 0.0747; 0.0365; 0.0349; 0.0649; 0.0656; 0.1189; 0.0362; 0.0849; 0.0368; 0.0389; 0.0943; 0.0477];
     TH = 0.4; %Threshold
     [filas, cols, ~] = size(img);
-    bin = zeros(filas, cols, 'uint8');
+    bin = zeros(filas, cols);
     for i = 1:filas
        for j =1:cols
           if (skinProb(impixel(img,j,i), means, covs, weigths, meann, covn, weigthn)>TH)
