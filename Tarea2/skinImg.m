@@ -19,4 +19,6 @@ function [ bin, probMat ] = skinImg(img)
           probMat(i,j,:) = [probs, probn];
        end
     end
+%     save('prob_skin.mat',probs);
+%     save('prob_nskin.mat',probn);
 end
